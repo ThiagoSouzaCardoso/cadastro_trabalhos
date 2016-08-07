@@ -72,6 +72,16 @@ public class Escola  implements Serializable{
 	public void setAlunos(Set<Aluno> alunos) {
 		this.alunos = alunos;
 	}
+	
+	
+
+	public String getNomeEscola() {
+		return nomeEscola;
+	}
+
+	public void setNomeEscola(String nomeEscola) {
+		this.nomeEscola = nomeEscola;
+	}
 
 	@Override
 	public int hashCode() {

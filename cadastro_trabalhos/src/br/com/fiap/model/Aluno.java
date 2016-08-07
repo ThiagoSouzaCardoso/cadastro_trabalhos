@@ -34,14 +34,14 @@ public class Aluno implements Serializable {
 
 	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
 	@JoinColumn(name = "ESCOLA_ID")
-	private Escola escola;
+	private Escola escola = new Escola();
 	
 	@OneToMany(mappedBy="disciplina")
 	private Set<AlunoDisciplina> disciplinas;
 	
 	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
 	@JoinColumn(name = "CURSO_ID")
-	private Curso curso;
+	private Curso curso = new Curso();
 	
 	@OneToMany(mappedBy="aluno")
 	private Set<AlunoTrabalho> trabalhos;

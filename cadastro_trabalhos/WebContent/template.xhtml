@@ -1,0 +1,50 @@
+<!DOCTYPE html5 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+  <title><ui:insert name="title">Default title</ui:insert></title>
+  <link rel="stylesheet" type="text/css" href="resources/css/layout.css"></link>
+</head>
+
+<body>
+
+<div id="header">
+    <ui:insert name="header">
+    	<ul>
+    		<li><a href="cadastroCurso.jsf">Cursos</a></li>
+    		<li><a href="cadastroAluno.jsf">Alunos</a></li>
+    		<li><a href="cadastroEscola.jsf">Escolas</a></li>
+    		<li><a href="cadastroProfessor.jsf">Professores</a></li>
+    		<li><a href="cadastroDisciplina.jsf">Disciplina</a></li>
+    		<li><a href="cadastroNota.jsf">Notas</a></li>
+    	</ul>
+    	<!--  include your header file or uncomment the include below and create header.xhtml in this directory -->
+    	<!-- <ui:include src="header.xhtml"/> -->
+    </ui:insert>
+</div>
+
+
+<div id="content">
+  <ui:insert name="content">
+    	Conteudo de teste
+    	<table border="1 solid black" style="margin: 0 auto">
+    		<tr>
+    			<td>1</td>
+    			<td>2</td>
+    		</tr>
+    		<tr>
+    			<td>3</td>
+    			<td>4</td>
+    		</tr>
+    	</table>
+    	<!--  include your content file or uncomment the include below and create content.xhtml in this directory -->
+	  	<!-- <div> -->
+    	<!-- <ui:include src="content.xhtml"/> -->  
+    	<!-- </div> -->
+  </ui:insert>
+</div>
+
+</body>
+
+</html>
