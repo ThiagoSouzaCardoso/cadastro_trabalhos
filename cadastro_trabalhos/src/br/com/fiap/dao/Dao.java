@@ -7,4 +7,5 @@ public interface Dao<T> {
 	 List<T> listar();
 	 T buscar(int id); 
 	 T atualizar(T entidade);
+	 boolean exiteDados();
 }

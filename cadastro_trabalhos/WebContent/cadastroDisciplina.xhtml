@@ -8,6 +8,7 @@
 
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
+		<h:panelGroup style="float:left;color:red;position:absolute;bottom:5px;left:5px" rendered="#{not cursoMB.ativaBotao}"><span>Não é possivel inserir uma disciplina, é necessario existir um ou mais cursos</span></h:panelGroup>
 		<h1>Cadastro Disciplina</h1>
 		<h:form>
 			<table width="auto" style="margin: 0 auto">
@@ -17,7 +18,7 @@
 				</tr>
 				<tr>
 					<td style="text-align:center" colspan="2">
-						<h:commandButton value="Cadastrar" action="#{disciplinaMB.gravar}"/>
+						<h:commandButton value="Cadastrar" action="#{disciplinaMB.gravar}" disabled="#{not disciplinaMB.ativaBotao}"/>
 						<h:outputText value=" "></h:outputText>
 						<input type="reset" value="Limpar"/>
 					</td>

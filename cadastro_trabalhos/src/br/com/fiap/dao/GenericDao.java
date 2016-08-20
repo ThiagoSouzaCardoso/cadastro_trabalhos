@@ -51,6 +51,16 @@ public class GenericDao<T> implements Dao<T>{
 			em.close();
 			
 			return t;
-	} 
+	}
+
+		@Override
+		public boolean exiteDados() {
+			em = JPAUtil.getEntityManager();
+			em.getTransaction().begin();
+			int i = em.createQuery("From " + classe.getSimpleName()).getResultList().size();
+			em.getTransaction().commit();
+			em.close();
+			return i>0?true:false;
+		} 
 	
 }

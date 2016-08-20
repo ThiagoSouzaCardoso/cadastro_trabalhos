@@ -19,30 +19,37 @@ import br.com.fiap.model.Escola;
 public class AlunoMB {
 
 	private Aluno aluno;
-	
+
 	AlunoDao dao = new AlunoDao();
+	private boolean ativaBotao = true;
 	EscolaDao escolaDao = new EscolaDao();
 	CursoDao cursoDao = new CursoDao();
-	
+
 	private List<SelectItem> selectCurso = new ArrayList<>();
 	private List<SelectItem> selectEscola = new ArrayList<>();
-	
+
 	public AlunoMB() {
-		for(Escola escola:escolaDao.listar()){
+		for (Escola escola : escolaDao.listar()) {
 			selectEscola.add(new SelectItem(escola.getId(), escola.getNomeEscola()));
 		}
-		
-		for(Curso curso:cursoDao.listar()){
+
+		for (Curso curso : cursoDao.listar()) {
 			selectCurso.add(new SelectItem(curso.getId(), curso.getNomeCurso()));
 		}
+
+		if (cursoDao.exiteDados()) {
+			ativaBotao = true;
+		} else {
+			ativaBotao = false;
+		}
 	}
-	
-	public void gravar(){
+
+	public void gravar() {
 		dao.adicionar(aluno);
 	}
-	
-	public void limpar(){
-		
+
+	public void limpar() {
+
 	}
 
 	public Aluno getAluno() {
@@ -69,6 +76,12 @@ public class AlunoMB {
 		this.selectEscola = selectEscola;
 	}
 
-	
-	
+	public boolean isAtivaBotao() {
+		return ativaBotao;
+	}
+
+	public void setAtivaBotao(boolean ativaBotao) {
+		this.ativaBotao = ativaBotao;
+	}
+
 }
