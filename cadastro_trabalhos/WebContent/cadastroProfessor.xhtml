@@ -8,6 +8,7 @@
 
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
+		<h:panelGroup style="float:left;color:red;position:absolute;bottom:5px;left:5px" rendered="#{not professorMB.ativaBotao}"><span>Não é possivel inserir um professor, é necessario existir uma ou mais escolas</span></h:panelGroup>
 		<h1>Cadastro Professor</h1>
 		<h:form>
 			<table width="auto" style="margin: 0 auto">
@@ -17,7 +18,7 @@
 				</tr>
 				<tr>
 					<td style="text-align:center" colspan="2">
-						<h:commandButton value="Cadastrar" action="#{professorMB.gravar}"/>
+						<h:commandButton value="Cadastrar" action="#{professorMB.gravar}"  disabled="#{not professorMB.ativaBotao}"/>
 						<h:outputText value=" "></h:outputText>
 						<input type="reset" value="Limpar"/>
 					</td>
