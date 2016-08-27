@@ -11,7 +11,14 @@
 		<h:panelGroup style="float:left;color:red;position:absolute;bottom:5px;left:5px" rendered="#{not disciplinaMB.ativaBotao}"><span>Não é possivel inserir uma disciplina, é necessario existir um ou mais cursos</span></h:panelGroup>
 		<h1>Cadastro Disciplina</h1>
 		<h:form>
-			<table width="auto" style="margin: 0 auto">
+			<table width="auto" style="margin: 0 auto"><tr>
+				<td class="label">Curso:</td>
+					<td>
+						<h:selectOneMenu value="#{disciplinaMB.cursoSelecionada}">
+							<f:selectItems value="#{disciplinaMB.selectCurso}"></f:selectItems>
+						</h:selectOneMenu>
+					</td>
+				</tr>
 				<tr>
 					<td class="label">Nome:</td>
 					<td><h:inputText value="#{disciplinaMB.disciplina.nomeDisciplina}"/></td>

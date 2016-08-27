@@ -1,0 +1,53 @@
+<!DOCTYPE html5 PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="content">
+		<h1>Lista Alunos</h1>
+		<h:form>
+				<table width="auto" style="margin: 0 auto">
+					<tr>
+						<td class="label">Aluno</td>
+						<td>
+							<h:selectOneMenu value="#{notasMB.alunoDisciplina.aluno}">
+								<f:selectItems value="#{notasMB.selectAluno}"></f:selectItems>
+							</h:selectOneMenu>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Disciplina:</td>
+						<td>
+							<h:selectOneMenu value="#{notasMB.alunoDisciplina.disciplina}">
+								<f:selectItems value="#{notasMB.selectDisciplina}"></f:selectItems>
+							</h:selectOneMenu>
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Projeto1:</td>
+						<td><h:inputText value="#{notasMB.alunoDisciplina.projeto1}"/></td>
+					</tr>
+					<tr>
+						<td class="label">Atividade Pratica:</td>
+						<td><h:inputText value="#{notasMB.alunoDisciplina.atividade}"/></td>
+					</tr>
+					<tr>
+						<td class="label">Projeto2:</td>
+						<td><h:inputText value="#{notasMB.alunoDisciplina.projeto2}"/></td>
+					</tr>
+					<tr>
+						<td style="text-align:center" colspan="2">
+							<h:commandButton value="Cadastrar" action="#{notasMB.gravar}"/>
+							<h:outputText value=" "></h:outputText>
+							<input type="reset" value="Limpar"/>
+						</td>
+					</tr>
+				</table>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -13,6 +13,14 @@
 		<h:form>
 			<table width="auto" style="margin: 0 auto">
 				<tr>
+					<td class="label">Escola:</td>
+					<td>
+						<h:selectOneMenu value="#{professorMB.escolaSelecionada}">
+							<f:selectItems value="#{professorMB.selectEscola}"></f:selectItems>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
 					<td class="label">Nome:</td>
 					<td><h:inputText value="#{professorMB.professor.nomeProfessor}"/></td>
 				</tr>

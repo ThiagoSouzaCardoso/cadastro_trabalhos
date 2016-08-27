@@ -45,6 +45,16 @@ public class Professor implements Serializable{
 	public void setEscolas(Set<Escola> escolas) {
 		this.escolas = escolas;
 	}
+
+	public String getNomeProfessor() {
+		return nomeProfessor;
+	}
+
+	public void setNomeProfessor(String nomeProfessor) {
+		this.nomeProfessor = nomeProfessor;
+	}
+	
+	
 	
 	
 }
