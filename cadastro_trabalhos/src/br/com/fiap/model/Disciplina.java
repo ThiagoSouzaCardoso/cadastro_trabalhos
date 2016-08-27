@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -27,10 +30,11 @@ public class Disciplina implements Serializable {
 	@OneToMany(mappedBy="aluno",fetch = FetchType.EAGER)
 	private Set<AlunoDisciplina> alunos;
 	
-//	@OneToMany(mappedBy="disciplina")
-//	private Set<Trabalho> trabalhos;
+	@ManyToMany(mappedBy="disciplinas",fetch = FetchType.EAGER)
+	private Set<Curso> cursos;
 
 	public Disciplina() {
+		
 	}
 
 	public Set<AlunoDisciplina> getAlunos() {

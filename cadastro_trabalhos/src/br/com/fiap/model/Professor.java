@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Professor implements Serializable{
@@ -23,7 +24,7 @@ public class Professor implements Serializable{
 	@Column(name="NOME_PROFESSOR")
 	private String nomeProfessor;
 	
-
+	
 	@ManyToMany(mappedBy="professores",fetch=FetchType.EAGER)
 	private Set<Escola> escolas;
 	

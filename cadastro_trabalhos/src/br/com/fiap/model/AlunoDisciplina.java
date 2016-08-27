@@ -1,5 +1,8 @@
 package br.com.fiap.model;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -8,8 +11,10 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 
@@ -29,6 +34,14 @@ public class AlunoDisciplina implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "DISCIPLINA_ID", referencedColumnName = "DISCIPLINA_ID",insertable=false,updatable=false)
 	private Disciplina disciplina;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PROFESSOR_ID",referencedColumnName="PROFESSOR_ID",insertable=false,updatable=false)
+	private Professor professor;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CURSO_ID",referencedColumnName="CURSO_ID",insertable=false,updatable=false)
+	private Curso curso;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="STATUS")

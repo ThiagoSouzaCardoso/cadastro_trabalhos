@@ -3,13 +3,17 @@ package br.com.fiap.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -31,6 +35,11 @@ public class Curso implements Serializable {
 	
 	@OneToMany(mappedBy="curso",fetch = FetchType.EAGER)
 	private Set<Aluno> alunos = new HashSet<Aluno>(0);
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "curso_disciplina",joinColumns = {@JoinColumn (name = "CURSO_ID", nullable = false, updatable = false) },
+	inverseJoinColumns = { @JoinColumn(name = "DISCIPLINA_ID",nullable = false, updatable = false) })
+	private Set<Disciplina> disciplinas = new HashSet<Disciplina>(0);
 	
 	public Set<Escola> getEscolas() {
 		return escolas;
