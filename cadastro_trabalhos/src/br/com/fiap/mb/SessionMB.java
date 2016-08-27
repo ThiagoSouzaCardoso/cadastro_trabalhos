@@ -6,7 +6,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.fiap.model.Usuario;
 
-@ManagedBean
+@ManagedBean(eager = true)
 @SessionScoped
 public class SessionMB {
 
