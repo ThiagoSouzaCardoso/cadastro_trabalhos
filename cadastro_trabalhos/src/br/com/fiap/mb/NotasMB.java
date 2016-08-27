@@ -8,30 +8,27 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.fiap.dao.AlunoDao;
-import br.com.fiap.dao.CursoDao;
 import br.com.fiap.dao.DisciplinaDao;
-import br.com.fiap.dao.TrabalhoDao;
 import br.com.fiap.model.Aluno;
-import br.com.fiap.model.AlunoTrabalho;
-import br.com.fiap.model.Curso;
+import br.com.fiap.model.AlunoDisciplina;
 import br.com.fiap.model.Disciplina;
-import br.com.fiap.model.Escola;
-import br.com.fiap.model.Trabalho;
 
 @ManagedBean
 @RequestScoped
 public class NotasMB {
 
-	private AlunoTrabalho alunoTrabalho;
+	private AlunoDisciplina alunoDisciplina;
 	private List<SelectItem> selectAluno = new ArrayList<SelectItem>();
 	private List<SelectItem> selectDisciplina = new ArrayList<SelectItem>();
-	private List<SelectItem> selectTrabalho = new ArrayList<SelectItem>();
+	private boolean ativaBotao = true;
 
 	AlunoDao alunoDao = new AlunoDao();
-	TrabalhoDao trabalhoDao = new TrabalhoDao();
 	DisciplinaDao disciplinaDao = new DisciplinaDao();
 	
 	public NotasMB() {
+		
+		alunoDisciplina = new AlunoDisciplina();
+		
 		for(Aluno aluno:alunoDao.listar()){
 			selectAluno.add(new SelectItem(aluno.getId(), aluno.getNomeAluno()));
 		}
@@ -39,9 +36,11 @@ public class NotasMB {
 		for(Disciplina disciplina:disciplinaDao.listar()){
 			selectAluno.add(new SelectItem(disciplina.getId(), disciplina.getNomeDisciplina()));
 		}
-		
-		for(Trabalho trabalho:trabalhoDao.listar()){
-			selectAluno.add(new SelectItem(trabalho.getId(), trabalho.getNomeTrabalho()));
+				
+		if (alunoDao.exiteDados() && disciplinaDao.exiteDados()) {
+			ativaBotao = true;
+		} else {
+			ativaBotao = false;
 		}
 	}
 	
@@ -50,14 +49,6 @@ public class NotasMB {
 	}
 	
 	public void limpar(){
-	}
-
-	public AlunoTrabalho getAlunoTrabalho() {
-		return alunoTrabalho;
-	}
-
-	public void setAlunoTrabalho(AlunoTrabalho alunoTrabalho) {
-		this.alunoTrabalho = alunoTrabalho;
 	}
 
 	public List<SelectItem> getSelectAluno() {
@@ -76,14 +67,22 @@ public class NotasMB {
 		this.selectDisciplina = selectDisciplina;
 	}
 
-	public List<SelectItem> getSelectTrabalho() {
-		return selectTrabalho;
+	public AlunoDisciplina getAlunoDisciplina() {
+		return alunoDisciplina;
 	}
 
-	public void setSelectTrabalho(List<SelectItem> selectTrabalho) {
-		this.selectTrabalho = selectTrabalho;
+	public void setAlunoDisciplina(AlunoDisciplina alunoDisciplina) {
+		this.alunoDisciplina = alunoDisciplina;
 	}
 
+	public boolean isAtivaBotao() {
+		return ativaBotao;
+	}
+
+	public void setAtivaBotao(boolean ativaBotao) {
+		this.ativaBotao = ativaBotao;
+	}	
+	
 	
 	
 }

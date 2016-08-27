@@ -17,6 +17,9 @@ public class DisciplinaMB {
 	CursoDao cursoDao = new CursoDao();
 
 	public DisciplinaMB() {
+		
+		disciplina = new Disciplina();
+		
 		if(cursoDao.exiteDados()){
 			ativaBotao = true;
 		}else{

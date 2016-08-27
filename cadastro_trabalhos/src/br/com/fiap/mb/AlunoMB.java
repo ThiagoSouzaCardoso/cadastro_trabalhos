@@ -29,6 +29,10 @@ public class AlunoMB {
 	private List<SelectItem> selectEscola = new ArrayList<>();
 
 	public AlunoMB() {
+		
+		aluno = new Aluno();
+		
+		
 		for (Escola escola : escolaDao.listar()) {
 			selectEscola.add(new SelectItem(escola.getId(), escola.getNomeEscola()));
 		}

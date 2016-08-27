@@ -26,8 +26,8 @@ public class Disciplina implements Serializable {
 	@OneToMany(mappedBy="aluno")
 	private Set<AlunoDisciplina> alunos;
 	
-	@OneToMany(mappedBy="disciplina")
-	private Set<Trabalho> trabalhos;
+//	@OneToMany(mappedBy="disciplina")
+//	private Set<Trabalho> trabalhos;
 
 	public Disciplina() {
 	}

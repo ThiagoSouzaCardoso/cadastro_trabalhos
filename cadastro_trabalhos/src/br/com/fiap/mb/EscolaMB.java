@@ -14,7 +14,7 @@ public class EscolaMB {
 	EscolaDao dao = new EscolaDao();
 	
 	public EscolaMB() {
-		// TODO Auto-generated constructor stub
+		escola = new Escola();
 	}
 
 	public void gravar() {

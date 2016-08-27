@@ -13,6 +13,14 @@
 		<h:form>
 			<table width="auto" style="margin: 0 auto">
 				<tr>
+					<td class="label">Escola:</td>
+					<td>
+						<h:selectOneMenu value="#{cursoMB.escolaSelecionada}">
+							<f:selectItems value="#{cursoMB.selectEscola}"></f:selectItems>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
 					<td class="label">Nome:</td>
 					<td><h:inputText value="#{cursoMB.curso.nomeCurso}"/></td>
 				</tr>
@@ -21,7 +29,7 @@
 						<h:commandButton value="Cadastrar" action="#{cursoMB.gravar}" disabled="#{not cursoMB.ativaBotao}"/>
 						<h:outputText value=" "></h:outputText>
 						<input type="reset" value="Limpar"/>
-					</td>
+					</td>					
 				</tr>
 			</table>
 		</h:form>

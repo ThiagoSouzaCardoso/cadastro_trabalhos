@@ -1,6 +1,7 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -10,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name = "aluno_disciplina")
@@ -31,6 +33,18 @@ public class AlunoDisciplina implements Serializable{
 	@Enumerated(EnumType.STRING)
 	@Column(name="STATUS")
 	private Status status;
+	
+	@Column(name="projeto1")
+	@Digits(integer=10,fraction=2)
+	private BigDecimal projeto1;
+	
+	@Column(name="projeto2")
+	@Digits(integer=10,fraction=2)
+	private BigDecimal projeto2;
+	
+	@Column(name="atividade")
+	@Digits(integer=10,fraction=2)
+	private BigDecimal atividade;
 	
 	public AlunoDisciplina() {
 		 setStatus(Status.CURSANDO);
@@ -60,13 +74,36 @@ public class AlunoDisciplina implements Serializable{
 		this.status = status;
 	}
 
+	public BigDecimal getProjeto1() {
+		return projeto1;
+	}
+
+	public void setProjeto1(BigDecimal projeto1) {
+		this.projeto1 = projeto1;
+	}
+
+	public BigDecimal getProjeto2() {
+		return projeto2;
+	}
+
+	public void setProjeto2(BigDecimal projeto2) {
+		this.projeto2 = projeto2;
+	}
+
+	public BigDecimal getAtividade() {
+		return atividade;
+	}
+
+	public void setAtividade(BigDecimal atividade) {
+		this.atividade = atividade;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
-		result = prime * result
-				+ ((disciplina == null) ? 0 : disciplina.hashCode());
+		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
 		return result;
 	}
 
@@ -91,5 +128,6 @@ public class AlunoDisciplina implements Serializable{
 			return false;
 		return true;
 	}
+
 	
 }

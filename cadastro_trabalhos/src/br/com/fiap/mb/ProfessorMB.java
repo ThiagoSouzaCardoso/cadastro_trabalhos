@@ -17,6 +17,9 @@ public class ProfessorMB {
 	EscolaDao escolaDao = new EscolaDao();
 	
 	public ProfessorMB() {
+		
+		professor = new Professor();
+		
 		if(escolaDao.exiteDados()){
 			ativaBotao = true;
 		}else{

@@ -43,8 +43,8 @@ public class Aluno implements Serializable {
 	@JoinColumn(name = "CURSO_ID")
 	private Curso curso = new Curso();
 	
-	@OneToMany(mappedBy="aluno")
-	private Set<AlunoTrabalho> trabalhos;
+//	@OneToMany(mappedBy="aluno")
+//	private Set<AlunoTrabalho> trabalhos;
 	
 	public Aluno() {
 	}
@@ -102,13 +102,13 @@ public class Aluno implements Serializable {
 		this.numeroRegistro = numeroRegistro;
 	}
 
-	public Set<AlunoTrabalho> getTrabalhos() {
-		return trabalhos;
-	}
-
-	public void setTrabalhos(Set<AlunoTrabalho> trabalhos) {
-		this.trabalhos = trabalhos;
-	}
+//	public Set<AlunoTrabalho> getTrabalhos() {
+//		return trabalhos;
+//	}
+//
+//	public void setTrabalhos(Set<AlunoTrabalho> trabalhos) {
+//		this.trabalhos = trabalhos;
+//	}
 
 	@Override
 	public int hashCode() {
