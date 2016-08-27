@@ -42,6 +42,8 @@ public class CursoMB {
 
 	public void gravar() {		
 		Escola escola = escolaDao.buscar(escolaSelecionada);
+		escola.getCursos().add(curso);
+		escolaDao.atualizar(escola);
 		curso.getEscolas().add(escola);
 		System.out.println(curso.getNomeCurso() + "na escola " + escola.getNomeEscola());
 		dao.adicionar(curso);

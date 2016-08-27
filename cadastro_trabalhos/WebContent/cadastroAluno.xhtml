@@ -21,18 +21,29 @@
 					<td><h:inputText/></td>
 				</tr>
 				<tr>
+					<td class="label">Escola:</td>
+					<td>
+						<h:selectOneMenu id="escolas"  immediate="true" onchange="submit();"  valueChangeListener="#{alunoMB.selecionaEscola}">
+							<f:selectItem itemValue="0" itemLabel="Selecione uma Escola"></f:selectItem>
+							<f:selectItems value="#{alunoMB.selectEscola}"></f:selectItems>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
 					<td class="label">Curso:</td>
 					<td>
-						<h:selectOneMenu value="#{alunoMB.aluno.curso}">
+						<h:selectOneMenu id="cursos"   immediate="true" onchange="submit();"  valueChangeListener="#{alunoMB.selecionaCurso}">
+							<f:selectItem itemValue="0" itemLabel="Selecione um Curso"></f:selectItem>
 							<f:selectItems value="#{alunoMB.selectCurso}"></f:selectItems>
 						</h:selectOneMenu>
 					</td>
 				</tr>
 				<tr>
-					<td class="label">Escola:</td>
+					<td class="label">Disciplina:</td>
 					<td>
-						<h:selectOneMenu value="#{alunoMB.aluno.escola}">
-							<f:selectItems value="#{alunoMB.selectEscola}"></f:selectItems>
+						<h:selectOneMenu id="disciplina" immediate="true" onchange="submit();"  valueChangeListener="#{alunoMB.selecionaDisciplina}">
+							<f:selectItem itemValue="0" itemLabel="Selecione uma Disciplina"></f:selectItem>
+							<f:selectItems value="#{alunoMB.selectDisciplina}"></f:selectItems>
 						</h:selectOneMenu>
 					</td>
 				</tr>

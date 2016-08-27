@@ -15,6 +15,7 @@
 				<td class="label">Curso:</td>
 					<td>
 						<h:selectOneMenu value="#{disciplinaMB.cursoSelecionada}">
+							<f:selectItem itemValue="0" itemLabel="Selecione um Curso"></f:selectItem>
 							<f:selectItems value="#{disciplinaMB.selectCurso}"></f:selectItems>
 						</h:selectOneMenu>
 					</td>
