@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -23,7 +24,7 @@ public class Disciplina implements Serializable {
 	@Column(name="NOME_DISCIPLINA")
 	private String nomeDisciplina;
 
-	@OneToMany(mappedBy="aluno")
+	@OneToMany(mappedBy="aluno",fetch = FetchType.EAGER)
 	private Set<AlunoDisciplina> alunos;
 	
 //	@OneToMany(mappedBy="disciplina")

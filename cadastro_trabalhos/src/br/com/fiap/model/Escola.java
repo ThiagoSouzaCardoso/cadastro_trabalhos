@@ -28,17 +28,17 @@ public class Escola  implements Serializable{
 	@Column(name="NOME_ESCOLA")
 	private String nomeEscola;
 	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "escola_curso",joinColumns = {@JoinColumn (name = "ESCOLA_ID", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "CURSO_ID",nullable = false, updatable = false) })
 	private List<Curso> cursos;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "escola_professor",joinColumns = {@JoinColumn (name = "ESCOLA_ID", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "PROFESSOR_ID",nullable = false, updatable = false) })
 	private List<Professor> professores;
 	
-	@OneToMany(mappedBy="escola")
+	@OneToMany(mappedBy="escola",fetch = FetchType.EAGER)
 	private Set<Aluno> alunos;
 
 	public Integer getId() {

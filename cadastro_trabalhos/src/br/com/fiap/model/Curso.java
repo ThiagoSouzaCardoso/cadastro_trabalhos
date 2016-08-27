@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -25,10 +26,10 @@ public class Curso implements Serializable {
 	@Column(name="NOME_CURSO")
 	private String nomeCurso;
 	
-	@ManyToMany(mappedBy="cursos")
+	@ManyToMany(mappedBy="cursos",fetch = FetchType.EAGER)
 	private Set<Escola> escolas = new HashSet<Escola>(0);
 	
-	@OneToMany(mappedBy="curso")
+	@OneToMany(mappedBy="curso",fetch = FetchType.EAGER)
 	private Set<Aluno> alunos = new HashSet<Aluno>(0);
 	
 	public Set<Escola> getEscolas() {

@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -32,14 +33,14 @@ public class Aluno implements Serializable {
 	@Column(name="RM_ALUNO")
 	private String numeroRegistro;
 
-	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "ESCOLA_ID")
 	private Escola escola = new Escola();
 	
-	@OneToMany(mappedBy="disciplina")
+	@OneToMany(mappedBy="disciplina",fetch = FetchType.EAGER)
 	private Set<AlunoDisciplina> disciplinas;
 	
-	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = LAZY)
+	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CURSO_ID")
 	private Curso curso = new Curso();
 	
