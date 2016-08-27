@@ -22,6 +22,7 @@ public class Professor implements Serializable{
 	@Column(name="NOME_PROFESSOR")
 	private String nomeProfessor;
 	
+
 	@ManyToMany(mappedBy="professores")
 	private Set<Escola> escolas;
 	
@@ -46,5 +47,13 @@ public class Professor implements Serializable{
 		this.escolas = escolas;
 	}
 	
+	
+	public String getNomeProfessor() {
+		return nomeProfessor;
+	}
+
+	public void setNomeProfessor(String nomeProfessor) {
+		this.nomeProfessor = nomeProfessor;
+	}
 	
 }

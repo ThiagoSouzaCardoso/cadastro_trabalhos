@@ -55,6 +55,7 @@ public class AlunoDisciplina implements Serializable{
 	}
 	
 	public void setAluno(Aluno aluno) {
+		this.id.setIdAluno(aluno.getId());
 		this.aluno = aluno;
 	}
 	
@@ -63,6 +64,7 @@ public class AlunoDisciplina implements Serializable{
 	}
 	
 	public void setDisciplina(Disciplina disciplina) {
+		this.id.setIdDisciplina(disciplina.getId());
 		this.disciplina = disciplina;
 	}
 	

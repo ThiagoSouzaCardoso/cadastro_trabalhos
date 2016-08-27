@@ -2,6 +2,7 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -25,10 +26,10 @@ public class Curso implements Serializable {
 	private String nomeCurso;
 	
 	@ManyToMany(mappedBy="cursos")
-	private Set<Escola> escolas;
+	private Set<Escola> escolas = new HashSet<Escola>(0);
 	
 	@OneToMany(mappedBy="curso")
-	private Set<Aluno> alunos;
+	private Set<Aluno> alunos = new HashSet<Aluno>(0);
 	
 	public Set<Escola> getEscolas() {
 		return escolas;
