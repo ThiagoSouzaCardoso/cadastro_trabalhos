@@ -8,18 +8,26 @@
 
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
+		<h1>Lista Alunos</h1>
+		<h:form>
+				<h:dataTable value="#{notasMB.alunos}" var="aluno">
+					<h:column>
+						#{aluno.nomeAluno}
+					</h:column>
+					<h:column>
+						#{aluno.numeroRegistro}
+					</h:column>
+					<h:column>
+						<h:commandButton action="#{listagemAlunoMB.cadastrar}">
+							<f:actionListener binding="#{listagemAlunoMB.alunoSelecionado}" for="#{aluno.id}"></f:actionListener>
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+		</h:form>
+		
+		
 		<h1>Cadastro Curso</h1>
 		<h:form>
-			<h:panelGroup rendered="#{not notasMB.ativaBotao}">
-				<table width="auto" style="margin: 0 auto">
-					<tr>
-						<td>
-							<span style="color:red">Não existem dados cadastrados para o lançamento das notas</span>
-						</td>
-					</tr>
-				</table>
-			</h:panelGroup>
-			<h:panelGroup  rendered="#{notasMB.ativaBotao}">>
 				<table width="auto" style="margin: 0 auto">
 					<tr>
 						<td class="label">Aluno</td>
@@ -57,7 +65,6 @@
 						</td>
 					</tr>
 				</table>
-			</h:panelGroup>
 		</h:form>
 	</ui:define>
 </ui:composition>

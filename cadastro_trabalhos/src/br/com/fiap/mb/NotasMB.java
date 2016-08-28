@@ -21,6 +21,9 @@ public class NotasMB {
 	private List<SelectItem> selectAluno = new ArrayList<SelectItem>();
 	private List<SelectItem> selectDisciplina = new ArrayList<SelectItem>();
 	private boolean ativaBotao = true;
+	
+	private List<Aluno> alunos = new ArrayList<>();
+	private int alunoSelecionado;
 
 	AlunoDao alunoDao = new AlunoDao();
 	DisciplinaDao disciplinaDao = new DisciplinaDao();
@@ -28,6 +31,7 @@ public class NotasMB {
 	public NotasMB() {
 		
 		alunoDisciplina = new AlunoDisciplina();
+		alunos.addAll(alunoDao.listar());
 		
 		for(Aluno aluno:alunoDao.listar()){
 			selectAluno.add(new SelectItem(aluno.getId(), aluno.getNomeAluno()));
@@ -81,6 +85,22 @@ public class NotasMB {
 
 	public void setAtivaBotao(boolean ativaBotao) {
 		this.ativaBotao = ativaBotao;
+	}
+
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
+	public int getAlunoSelecionado() {
+		return alunoSelecionado;
+	}
+
+	public void setAlunoSelecionado(int alunoSelecionado) {
+		this.alunoSelecionado = alunoSelecionado;
 	}	
 	
 	
