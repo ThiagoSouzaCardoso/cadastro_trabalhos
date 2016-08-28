@@ -3,20 +3,21 @@ package br.com.fiap.mb;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import br.com.fiap.dao.UsuarioDao;
 import br.com.fiap.model.Usuario;
 
-@RequestScoped
 @ManagedBean
+@SessionScoped
 public class LoginMB {
 	
 		private String login;
 		private String senha;
 		private Map<String, Object> sessionMap;
+		private Usuario usuarioLogado;
 		
 		public LoginMB() {
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -30,6 +31,7 @@ public class LoginMB {
 			
 			if (usr != null) {
 				sessionMap.put("usuario_logado", usr);
+				usuarioLogado = usr;
 				return "pages/template.jsf?faces-redirect=true";
 			} else {
 				return "login.jsf?faces-redirect=true";
@@ -51,6 +53,30 @@ public class LoginMB {
 		
 		public void setSenha(String senha) {
 			this.senha = senha;
+		}
+		
+		public void logout() {
+			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		}
+
+		public Usuario getUsuarioLogado() {
+			return usuarioLogado;
+		}
+
+		public void setUsuarioLogado(Usuario usuarioLogado) {
+			this.usuarioLogado = usuarioLogado;
+		}
+		
+		public boolean isAluno() {
+			return usuarioLogado.isAluno();
+		}
+
+		public boolean isProfessor() {
+			return usuarioLogado.isProfessor();
+		}
+
+		public boolean isAdmin() {
+			return usuarioLogado.isAdmin();
 		}
 
 }
