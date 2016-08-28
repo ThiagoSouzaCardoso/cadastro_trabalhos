@@ -10,17 +10,46 @@
 </h:head>
 <h:body>
 	<h:form>
-	<div class="conteudo">
-        <h:form class="acesso">
-          <h:outputLabel for="usuario" class="fl">Usuario</h:outputLabel>
-          <h:inputText type="text" id="usuario" name="usuario" value="#{loginMB.login}" class="mb2"></h:inputText>
-          <br></br>
-          <h:outputLabel for="senha" class="fl">Senha</h:outputLabel>
-          <h:inputSecret type="password" id="senha" name="senha" value="#{loginMB.senha}" class="mb2"></h:inputSecret>
-          <br></br>
-          <h:commandButton value="Acessar" class="btnAcao" action="#{loginMB.autenticar}"></h:commandButton>
-      	</h:form>
-</div>
+		<div class="conteudo">
+			<h:form class="acesso">
+				<center>
+				<h1>Acesso ao sistema de gestão de Notas</h1>
+				<table width="auto" style="background-color: #ccc;padding: 1em;margin-top: 10%">
+				<tr>
+					<td>
+						<table width="auto">
+					<tr>
+						<td>
+							<h:outputLabel for="usuario" class="fl">Usuario</h:outputLabel>
+						</td>
+						<td>
+							<h:inputText type="text" id="usuario" name="usuario"
+						value="#{loginMB.login}" class="mb2" ></h:inputText>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputLabel for="senha" class="fl">Senha</h:outputLabel>
+						</td>
+						<td>
+							<h:inputSecret type="password" id="senha" name="senha"
+						value="#{loginMB.senha}" class="mb2"></h:inputSecret>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center" style="padding: 1em">
+							<h:commandButton value="Acessar" class="btnAcao"
+						action="#{loginMB.autenticar}"></h:commandButton>
+						</td>
+					</tr>
+				</table>
+					</td>
+				</tr>
+				</table>
+				
+				</center>
+			</h:form>
+		</div>
 	</h:form>
 </h:body>
 </html>

@@ -66,15 +66,17 @@ public class AlunoMB {
 		cursoDao.atualizar(curso);
 		aluno.setCurso(curso);
 		
-//		for (Disciplina disciplina : curso.get) {
-//			selectDisciplina.add(new SelectItem(disciplina.getId(), disciplina.getNomeDisciplina()));
-//		}
+		for (Disciplina disciplina : curso.getDisciplinas()) {
+			selectDisciplina.add(new SelectItem(disciplina.getId(), disciplina.getNomeDisciplina()));
+		}
 		
 	}
 	
 	public void selecionaDisciplina(ValueChangeEvent event) {
 		Disciplina disciplina = disciplinaDao.buscar((Integer)event.getNewValue());
-		
+//		disciplina.getAlunos().add(aluno);
+//		disciplinaDao.atualizar(disciplina);
+//		aluno.getDisciplinas().add(disciplina);
 	}
 
 	public void gravar() {

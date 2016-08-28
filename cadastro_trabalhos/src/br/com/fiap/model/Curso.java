@@ -79,6 +79,16 @@ public class Curso implements Serializable {
 	public void setNomeCurso(String nomeCurso) {
 		this.nomeCurso = nomeCurso;
 	}
+	
+	
+
+	public Set<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(Set<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
 	@Override
 	public int hashCode() {
