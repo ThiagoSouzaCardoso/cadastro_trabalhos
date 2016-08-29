@@ -1,8 +1,10 @@
 package br.com.fiap.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,9 +26,8 @@ public class Professor implements Serializable,BaseEntity{
 	@Column(name="NOME_PROFESSOR")
 	private String nomeProfessor;
 	
-	
-	@ManyToMany(mappedBy="professores",fetch=FetchType.EAGER)
-	private Set<Escola> escolas;
+	@ManyToMany(mappedBy="professores",fetch=FetchType.EAGER,cascade={CascadeType.ALL})
+	private Set<Escola> escolas = new HashSet<>();
 	
 	public Professor() {
 	}

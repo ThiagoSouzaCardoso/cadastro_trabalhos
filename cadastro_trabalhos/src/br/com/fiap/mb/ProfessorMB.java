@@ -17,20 +17,15 @@ import br.com.fiap.model.Professor;
 public class ProfessorMB {
 
 	private Professor professor;
-	private List<SelectItem> selectEscola = new ArrayList<SelectItem>();
-	private int escolaSelecionada;
+	private List<Escola> selectEscola = new ArrayList<Escola>();
+	private Escola escolaSelecionada;
 	private boolean ativaBotao = true;
 	ProfessorDao dao = new ProfessorDao();
 	EscolaDao escolaDao = new EscolaDao();
 	
 	public ProfessorMB() {
-		
 		professor = new Professor();
-		
-		for(Escola escola:escolaDao.listar()){
-			selectEscola.add(new SelectItem(escola.getId(), escola.getNomeEscola()));
-		}
-		
+		selectEscola = escolaDao.listar();
 		if(escolaDao.exiteDados()){
 			ativaBotao = true;
 		}else{
@@ -39,8 +34,9 @@ public class ProfessorMB {
 	}
 	
 	public void gravar(){
-		Escola escola = escolaDao.buscar(escolaSelecionada);
-		dao.adicionar(professor);
+		professor.getEscolas().add(escolaSelecionada);
+		escolaSelecionada.getProfessores().add(professor);
+		dao.atualizar(professor);
 		professor = new Professor();
 	}
 	
@@ -64,19 +60,19 @@ public class ProfessorMB {
 		this.ativaBotao = ativaBotao;
 	}
 
-	public List<SelectItem> getSelectEscola() {
+	public List<Escola> getSelectEscola() {
 		return selectEscola;
 	}
 
-	public void setSelectEscola(List<SelectItem> selectEscola) {
+	public void setSelectEscola(List<Escola> selectEscola) {
 		this.selectEscola = selectEscola;
 	}
 
-	public int getEscolaSelecionada() {
+	public Escola getEscolaSelecionada() {
 		return escolaSelecionada;
 	}
 
-	public void setEscolaSelecionada(int escolaSelecionada) {
+	public void setEscolaSelecionada(Escola escolaSelecionada) {
 		this.escolaSelecionada = escolaSelecionada;
 	}	
 	
