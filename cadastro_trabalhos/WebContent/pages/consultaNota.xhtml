@@ -11,20 +11,20 @@
 		<h1>Lista Alunos</h1>
 		<h:form>
 			<center>
-				<h:dataTable class="tabela" value="#{notasMB.alunos}" var="aluno" style="text-align:center" cellspacing="0" cellpadding="0">
+				<h:dataTable class="tabela" value="#{notasCMB.alunos}" var="aluno" style="text-align:center" cellspacing="0" cellpadding="0">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
-						#{aluno.nomeAluno}
+						#{aluno.aluno.nomeAluno}
 					</h:column>
 					<h:column>
 						<f:facet name="header">RM</f:facet>
-						#{aluno.numeroRegistro}
+						#{aluno.aluno.numeroRegistro}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Lançar</f:facet>
-						<h:commandLink action="#{notasMB.selecionaAluno}" >
+						<h:commandLink action="#{notasCMB.selecionaAluno}" >
 							<h:graphicImage name="img/nota.png" style="max-width: 1.5em;" />
-						 	<f:setPropertyActionListener target="#{notasMB.alunoDisciplina.aluno}" value="#{aluno}" />							
+						 	<f:setPropertyActionListener target="#{notasCMB.alunoDisciplina}" value="#{aluno}" />							
 						</h:commandLink>
 					</h:column>
 				</h:dataTable>
@@ -38,35 +38,27 @@
 				<tr>
 					<td class="label">Aluno</td>
 					<td>
-						<h:inputText value="#{notasMB.alunoDisciplina.aluno.nomeAluno}" disabled="true"/>
+						<h:inputText value="#{notasCMB.alunoDisciplina.aluno.nomeAluno}" disabled="true"/>
 					</td>
 				</tr>
 				<tr>
 					<td class="label">Disciplina:</td>
-					<td><h:selectOneMenu value="#{notasMB.disciplina}"  immediate="true" converter="convert" >
-							<f:selectItem itemLabel="Selecione uma Disciplina" />
-							<f:selectItems value="#{notasMB.selectDisciplina}" var="o" itemLabel="#{o.nomeDisciplina}" itemValue="#{o}"/>
+					<td><h:selectOneMenu value="#{notasCMB.disciplina}"  immediate="true" converter="convert" disabled="true">
+							<f:selectItems value="#{notasCMB.selectDisciplina}" var="o" itemLabel="#{o.nomeDisciplina}" itemValue="#{o}"/>
 							<f:ajax execute="@this" event="change" immediate="true"/>
 						</h:selectOneMenu></td>
 				</tr>
 				<tr>
 					<td class="label">Projeto1:</td>
-					<td><h:inputText value="#{notasMB.alunoDisciplina.projeto1}" /></td>
+					<td><h:inputText value="#{notasCMB.alunoDisciplina.projeto1}" disabled="true"/></td>
 				</tr>
 				<tr>
 					<td class="label">Atividade Pratica:</td>
-					<td><h:inputText value="#{notasMB.alunoDisciplina.atividade}" /></td>
+					<td><h:inputText value="#{notasCMB.alunoDisciplina.atividade}" disabled="true"/></td>
 				</tr>
 				<tr>
 					<td class="label">Projeto2:</td>
-					<td><h:inputText value="#{notasMB.alunoDisciplina.projeto2}" /></td>
-				</tr>
-				<tr>
-					<td style="text-align: center" colspan="2">
-						<h:commandButton
-							value="Cadastrar" action="#{notasMB.gravar}" immediate="true" /> 
-						<h:outputText value=" ">
-						</h:outputText> <input type="reset" value="Limpar" /></td>
+					<td><h:inputText value="#{notasCMB.alunoDisciplina.projeto2}" disabled="true"/></td>
 				</tr>
 			</table>
 		</h:form>

@@ -30,8 +30,11 @@
 	    		<h:panelGroup rendered="#{loginMB.admin}">
 	    		<li><a href="cadastroDisciplina.jsf">Disciplina</a></li>
 	    		</h:panelGroup>
-	    		<h:panelGroup rendered="#{loginMB.professor or loginMB.aluno}">
+	    		<h:panelGroup rendered="#{loginMB.professor}">
 	    		<li><a href="cadastroNota.jsf">Notas</a></li>
+	    		</h:panelGroup>
+	    		<h:panelGroup rendered="#{loginMB.aluno}">
+	    		<li><a href="consultaNota.jsf">Notas</a></li>
 	    		</h:panelGroup>
 	    		<li style="float: right;"><h:commandLink action="#{loginMB.logout}" value="Sair" /></li>
 	    	</ul>
