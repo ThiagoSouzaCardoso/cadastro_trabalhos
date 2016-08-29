@@ -11,30 +11,34 @@
 		<h1>Lista Alunos</h1>
 		<h:form>
 			<center>
-				<h:dataTable value="#{notasMB.alunos}" var="aluno" border="1">
+				<h:dataTable value="#{notasMB.alunos}" var="aluno" border="1" style="text-align:center">
 					<h:column>
+						<f:facet name="header">Nome</f:facet>
 						#{aluno.nomeAluno}
 					</h:column>
 					<h:column>
+						<f:facet name="header">RM</f:facet>
 						#{aluno.numeroRegistro}
 					</h:column>
 					<h:column>
-						<h:commandButton action="#{notasMB.selecionaAluno}">
+						<f:facet name="header">Lançar</f:facet>
+						<h:commandLink action="#{notasMB.selecionaAluno}" >
+							<h:graphicImage name="img/nota.png" style="max-width: 1.5em;" />
 						 	<f:setPropertyActionListener target="#{notasMB.alunoDisciplina.aluno}" value="#{aluno}" />							
-						</h:commandButton>
+						</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</center>
 		</h:form>
 
 
-		<h1>Cadastro Curso</h1>
+		<h1>Lançamento de Notas</h1>
 		<h:form id="frmCadastro">
 			<table width="auto" style="margin: 0 auto">
 				<tr>
 					<td class="label">Aluno</td>
 					<td>
-						<h:inputText value="#{notasMB.alunoDisciplina.aluno.nomeAluno}"/>
+						<h:inputText value="#{notasMB.alunoDisciplina.aluno.nomeAluno}" disabled="true"/>
 					</td>
 				</tr>
 				<tr>
