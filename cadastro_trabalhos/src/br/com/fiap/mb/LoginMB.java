@@ -60,7 +60,13 @@ public class LoginMB {
 	}
 
 	public void logout() {
-		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		try{
+			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+		    ec.invalidateSession();
+		    ec.redirect("../login.jsf");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Usuario getUsuarioLogado() {
