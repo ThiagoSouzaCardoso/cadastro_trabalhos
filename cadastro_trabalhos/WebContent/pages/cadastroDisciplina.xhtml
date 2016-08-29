@@ -14,7 +14,6 @@
 			<table width="auto" style="margin: 0 auto"><tr>
 				<td class="label">Curso:</td>
 					<td>
-					
 						<h:selectOneMenu id="cursos" converter="convert" value="#{disciplinaMB.cursoSelecionada}" required="true">
 							<f:selectItem itemLabel="Selecione um Curso"/>
 							<f:selectItems value="#{disciplinaMB.selectCurso}" var="o" itemLabel="#{o.nomeCurso}" itemValue="#{o}"/>

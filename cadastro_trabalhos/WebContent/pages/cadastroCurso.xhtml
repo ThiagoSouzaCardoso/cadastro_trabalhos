@@ -15,9 +15,9 @@
 				<tr>
 					<td class="label">Escola:</td>
 					<td>
-						<h:selectOneMenu value="#{cursoMB.escolaSelecionada}">
-							<f:selectItem itemValue="0" itemLabel="Selecione uma Escola"></f:selectItem>
-							<f:selectItems value="#{cursoMB.selectEscola}"></f:selectItems>
+						<h:selectOneMenu id="cursos" converter="convert" value="#{cursoMB.escolaSelecionada}" required="true">
+							<f:selectItem itemLabel="Selecione uma Escola"/>
+							<f:selectItems value="#{cursoMB.selectEscola}" var="o" itemLabel="#{o.nomeEscola}" itemValue="#{o}"/>
 						</h:selectOneMenu>
 					</td>
 				</tr>

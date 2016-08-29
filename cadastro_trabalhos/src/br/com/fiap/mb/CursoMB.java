@@ -2,15 +2,12 @@ package br.com.fiap.mb;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.model.SelectItem;
 
 import br.com.fiap.dao.CursoDao;
 import br.com.fiap.dao.EscolaDao;
-import br.com.fiap.model.Aluno;
 import br.com.fiap.model.Curso;
 import br.com.fiap.model.Escola;
 
@@ -19,8 +16,8 @@ import br.com.fiap.model.Escola;
 public class CursoMB {
 
 	private Curso curso;
-	private List<SelectItem> selectEscola = new ArrayList<SelectItem>();
-	private int escolaSelecionada;
+	private List<Escola> selectEscola = new ArrayList<Escola>();
+	private Escola escolaSelecionada;
 	private boolean ativaBotao = true;
 	CursoDao dao = new CursoDao();
 	EscolaDao escolaDao = new EscolaDao();
@@ -28,10 +25,7 @@ public class CursoMB {
 	public CursoMB() {
 		
 		curso = new Curso();
-		
-		for(Escola escola:escolaDao.listar()){
-			selectEscola.add(new SelectItem(escola.getId(), escola.getNomeEscola()));
-		}
+		selectEscola = escolaDao.listar();
 		
 		if (escolaDao.exiteDados()) {
 			ativaBotao = true;
@@ -41,11 +35,9 @@ public class CursoMB {
 	}
 
 	public void gravar() {		
-		Escola escola = escolaDao.buscar(escolaSelecionada);
+		Escola escola = escolaSelecionada;
 		escola.getCursos().add(curso);
-		escolaDao.atualizar(escola);
 		curso.getEscolas().add(escola);
-		System.out.println(curso.getNomeCurso() + "na escola " + escola.getNomeEscola());
 		dao.adicionar(curso);
 		curso = new Curso();
 	}
@@ -69,19 +61,19 @@ public class CursoMB {
 		this.ativaBotao = ativaBotao;
 	}
 
-	public List<SelectItem> getSelectEscola() {
+	public List<Escola> getSelectEscola() {
 		return selectEscola;
 	}
 
-	public void setSelectEscola(List<SelectItem> selectEscola) {
+	public void setSelectEscola(List<Escola> selectEscola) {
 		this.selectEscola = selectEscola;
 	}
 
-	public int getEscolaSelecionada() {
+	public Escola getEscolaSelecionada() {
 		return escolaSelecionada;
 	}
 
-	public void setEscolaSelecionada(int escolaSelecionada) {
+	public void setEscolaSelecionada(Escola escolaSelecionada) {
 		this.escolaSelecionada = escolaSelecionada;
 	}
 	
