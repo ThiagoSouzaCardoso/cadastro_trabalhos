@@ -1,3 +1,14 @@
+
+.tabela	table {
+    border-collapse: collapse;
+}
+
+.tabela th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+
 html, body{
 	margin: 0;
 	border: 0;

@@ -11,7 +11,7 @@
 		<h1>Lista Alunos</h1>
 		<h:form>
 			<center>
-				<h:dataTable value="#{notasMB.alunos}" var="aluno" border="1" style="text-align:center">
+				<h:dataTable class="tabela" value="#{notasMB.alunos}" var="aluno" style="text-align:center" cellspacing="0" cellpadding="0">
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
 						#{aluno.nomeAluno}
@@ -72,4 +72,5 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
+
 </html>
