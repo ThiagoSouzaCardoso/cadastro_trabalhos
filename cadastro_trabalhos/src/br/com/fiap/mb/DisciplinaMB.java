@@ -19,8 +19,8 @@ import br.com.fiap.model.Escola;
 public class DisciplinaMB {
 
 	private Disciplina disciplina;
-	private List<SelectItem> selectCurso = new ArrayList<SelectItem>();
-	private int cursoSelecionada;
+	private List<Curso> selectCurso = new ArrayList<Curso>();
+	private Curso cursoSelecionada;
 	private boolean ativaBotao = true;
 	DisciplinaDao dao = new DisciplinaDao();
 	CursoDao cursoDao = new CursoDao();
@@ -28,11 +28,7 @@ public class DisciplinaMB {
 	public DisciplinaMB() {
 		
 		disciplina = new Disciplina();
-		
-		for(Curso curso:cursoDao.listar()){
-			selectCurso.add(new SelectItem(curso.getId(), curso.getNomeCurso()));
-		}
-		
+		selectCurso = cursoDao.listar();
 		
 		if(cursoDao.exiteDados()){
 			ativaBotao = true;
@@ -42,8 +38,10 @@ public class DisciplinaMB {
 	}
 
 	public void gravar() {
-		Curso escola = cursoDao.buscar(cursoSelecionada);
-		dao.adicionar(disciplina);
+		Curso curso = cursoSelecionada;
+		curso.getDisciplinas().add(disciplina);
+		disciplina.getCursos().add(curso);
+		dao.atualizar(disciplina);
 	}
 
 	public void limpar() {
@@ -68,19 +66,19 @@ public class DisciplinaMB {
 
 	
 
-	public List<SelectItem> getSelectCurso() {
+	public List<Curso> getSelectCurso() {
 		return selectCurso;
 	}
 
-	public void setSelectCurso(List<SelectItem> selectCurso) {
+	public void setSelectCurso(List<Curso> selectCurso) {
 		this.selectCurso = selectCurso;
 	}
 
-	public int getCursoSelecionada() {
+	public Curso getCursoSelecionada() {
 		return cursoSelecionada;
 	}
 
-	public void setCursoSelecionada(int cursoSelecionada) {
+	public void setCursoSelecionada(Curso cursoSelecionada) {
 		this.cursoSelecionada = cursoSelecionada;
 	}
 

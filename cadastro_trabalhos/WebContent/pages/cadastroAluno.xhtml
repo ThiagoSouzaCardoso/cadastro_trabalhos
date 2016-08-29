@@ -4,49 +4,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="template.xhtml">
 	<ui:define name="content">
 		<h:panelGroup style="float:left;color:red;position:absolute;bottom:5px;left:5px" rendered="#{not cursoMB.ativaBotao}"><span>Não é possivel inserir um aluno, é necessario existir um ou mais cursos</span></h:panelGroup>
 		<h1>Cadastro Aluno</h1>
-		<h:form>
+		<h:form prependId="false">
 			<table width="auto" style="margin: 0 auto">
 				<tr>
 					<td class="label">Nome:</td>
-					<td><h:inputText/></td>
+					<td><h:inputText value="#{alunoMB.aluno.nomeAluno}"/></td>
 				</tr>
 				<tr>
 					<td class="label">RM:</td>
-					<td><h:inputText/></td>
+					<td><h:inputText value="#{alunoMB.aluno.numeroRegistro}"/></td>
 				</tr>
 				<tr>
 					<td class="label">Escola:</td>
 					<td>
-						<h:selectOneMenu id="escolas"  immediate="true" onchange="submit();"  valueChangeListener="#{alunoMB.selecionaEscola}">
-							<f:selectItem itemValue="0" itemLabel="Selecione uma Escola"></f:selectItem>
-							<f:selectItems value="#{alunoMB.selectEscola}"></f:selectItems>
+						<h:selectOneMenu id="escolas" converter="convert" value="#{alunoMB.aluno.escola}" required="true" immediate="true">
+							<f:selectItem itemLabel="Selecione uma Escola"/>
+							<f:selectItems value="#{alunoMB.selectEscola}" var="o" itemLabel="#{o.nomeEscola}" itemValue="#{o}"/>
+							<f:ajax execute="escolas" render="cursos" event="change" listener="#{alunoMB.selecionarEscola}"/>
 						</h:selectOneMenu>
 					</td>
 				</tr>
 				<tr>
 					<td class="label">Curso:</td>
 					<td>
-						<h:selectOneMenu id="cursos"   immediate="true" onchange="submit();"  valueChangeListener="#{alunoMB.selecionaCurso}">
-							<f:selectItem itemValue="0" itemLabel="Selecione um Curso"></f:selectItem>
-							<f:selectItems value="#{alunoMB.selectCurso}"></f:selectItems>
+						<h:selectOneMenu id="cursos" converter="convert" value="#{alunoMB.aluno.curso}" immediate="true">
+							<f:selectItem itemLabel="Selecione um Curso"/>
+							<f:selectItems value="#{alunoMB.selectCurso}" var="o" itemLabel="#{o.nomeCurso}" itemValue="#{o}"/>
+							<f:ajax execute="@this" event="change" immediate="true"/>
 						</h:selectOneMenu>
 					</td>
 				</tr>
-				<tr>
-					<td class="label">Disciplina:</td>
-					<td>
-						<h:selectOneMenu id="disciplina" immediate="true" onchange="submit();"  valueChangeListener="#{alunoMB.selecionaDisciplina}">
-							<f:selectItem itemValue="0" itemLabel="Selecione uma Disciplina"></f:selectItem>
-							<f:selectItems value="#{alunoMB.selectDisciplina}"></f:selectItems>
-						</h:selectOneMenu>
-					</td>
-				</tr>
+				
 				<tr>
 					<td style="text-align:center" colspan="2">
 						<h:commandButton value="Cadastrar" action="#{alunoMB.gravar}" disabled="#{not alunoMB.ativaBotao}"/>

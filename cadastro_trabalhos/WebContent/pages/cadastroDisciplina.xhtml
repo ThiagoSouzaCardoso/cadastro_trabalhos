@@ -14,10 +14,12 @@
 			<table width="auto" style="margin: 0 auto"><tr>
 				<td class="label">Curso:</td>
 					<td>
-						<h:selectOneMenu value="#{disciplinaMB.cursoSelecionada}">
-							<f:selectItem itemValue="0" itemLabel="Selecione um Curso"></f:selectItem>
-							<f:selectItems value="#{disciplinaMB.selectCurso}"></f:selectItems>
+					
+						<h:selectOneMenu id="cursos" converter="convert" value="#{disciplinaMB.cursoSelecionada}" required="true">
+							<f:selectItem itemLabel="Selecione um Curso"/>
+							<f:selectItems value="#{disciplinaMB.selectCurso}" var="o" itemLabel="#{o.nomeCurso}" itemValue="#{o}"/>
 						</h:selectOneMenu>
+			
 					</td>
 				</tr>
 				<tr>

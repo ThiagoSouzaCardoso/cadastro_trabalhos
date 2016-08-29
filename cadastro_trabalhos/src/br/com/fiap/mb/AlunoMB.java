@@ -3,10 +3,10 @@ package br.com.fiap.mb;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.ValueChangeEvent;
-import javax.faces.model.SelectItem;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.fiap.dao.AlunoDao;
 import br.com.fiap.dao.CursoDao;
@@ -31,54 +31,32 @@ public class AlunoMB {
 	private int idEscolaSelecionada;
 	private int idCursoSelecionado;
 
-	private List<SelectItem> selectCurso = new ArrayList<>();
-	private List<SelectItem> selectEscola = new ArrayList<>();
-	private List<SelectItem> selectDisciplina = new ArrayList<>();
+	private List<Curso> selectCurso = new ArrayList<>();
+	private List<Escola> selectEscola = new ArrayList<>();
+	private List<Disciplina> selectDisciplina = new ArrayList<>();
 
 	public AlunoMB() {
-
+	}
+	
+	
+	@PostConstruct
+	public void init(){
 		aluno = new Aluno();
-
-		for (Escola escola : escolaDao.listar()) {
-			selectEscola.add(new SelectItem(escola.getId(), escola.getNomeEscola()));
-		}
-
+		selectEscola  = escolaDao.listar();
+		
 		if (cursoDao.exiteDados()) {
 			ativaBotao = true;
 		} else {
 			ativaBotao = false;
 		}
 	}
-
-	public void selecionaEscola(ValueChangeEvent event) {
-		Escola escola = escolaDao.buscar((Integer)event.getNewValue());
-		for (Curso curso : escola.getCursos()) {
-			selectCurso.add(new SelectItem(curso.getId(), curso.getNomeCurso()));
-		}
-		escola.getAlunos().add(aluno);
-		escolaDao.atualizar(escola);
-		aluno.setEscola(escola);
-	}
-
-	public void selecionaCurso(ValueChangeEvent event) {
-		Curso curso = cursoDao.buscar((Integer)event.getNewValue());
-		curso.getAlunos().add(aluno);
-		cursoDao.atualizar(curso);
-		aluno.setCurso(curso);
-		
-		for (Disciplina disciplina : curso.getDisciplinas()) {
-			selectDisciplina.add(new SelectItem(disciplina.getId(), disciplina.getNomeDisciplina()));
-		}
-		
+	
+	public void selecionarEscola(AjaxBehaviorEvent ev) {
+		javax.faces.component.html.HtmlSelectOneMenu html = (javax.faces.component.html.HtmlSelectOneMenu) ev.getSource();
+		Escola escola = (Escola)html.getValue();
+		selectCurso = escola.getCursos();
 	}
 	
-	public void selecionaDisciplina(ValueChangeEvent event) {
-		Disciplina disciplina = disciplinaDao.buscar((Integer)event.getNewValue());
-//		disciplina.getAlunos().add(aluno);
-//		disciplinaDao.atualizar(disciplina);
-//		aluno.getDisciplinas().add(disciplina);
-	}
-
 	public void gravar() {
 		dao.adicionar(aluno);
 	}
@@ -95,19 +73,19 @@ public class AlunoMB {
 		this.aluno = aluno;
 	}
 
-	public List<SelectItem> getSelectCurso() {
+	public List<Curso> getSelectCurso() {
 		return selectCurso;
 	}
 
-	public void setSelectCurso(List<SelectItem> selectCurso) {
+	public void setSelectCurso(List<Curso> selectCurso) {
 		this.selectCurso = selectCurso;
 	}
 
-	public List<SelectItem> getSelectEscola() {
+	public List<Escola> getSelectEscola() {
 		return selectEscola;
 	}
 
-	public void setSelectEscola(List<SelectItem> selectEscola) {
+	public void setSelectEscola(List<Escola> selectEscola) {
 		this.selectEscola = selectEscola;
 	}
 
@@ -135,11 +113,11 @@ public class AlunoMB {
 		this.idCursoSelecionado = idCursoSelecionado;
 	}
 
-	public List<SelectItem> getSelectDisciplina() {
+	public List<Disciplina> getSelectDisciplina() {
 		return selectDisciplina;
 	}
 
-	public void setSelectDisciplina(List<SelectItem> selectDisciplina) {
+	public void setSelectDisciplina(List<Disciplina> selectDisciplina) {
 		this.selectDisciplina = selectDisciplina;
 	}
 	

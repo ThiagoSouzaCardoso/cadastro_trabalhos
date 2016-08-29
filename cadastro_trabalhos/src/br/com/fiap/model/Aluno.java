@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Aluno implements Serializable {
+public class Aluno implements Serializable, BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,16 +33,16 @@ public class Aluno implements Serializable {
 	@Column(name="RM_ALUNO")
 	private String numeroRegistro;
 
-	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = {MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "ESCOLA_ID")
 	private Escola escola = new Escola();
 	
 	@OneToMany(mappedBy="disciplina",fetch = FetchType.EAGER)
 	private Set<AlunoDisciplina> disciplinas;
 	
-	@ManyToOne(cascade = { PERSIST, MERGE }, fetch = FetchType.EAGER)
+	@ManyToOne(cascade = {MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "CURSO_ID")
-	private Curso curso = new Curso();
+	private Curso curso;
 	
 //	@OneToMany(mappedBy="aluno")
 //	private Set<AlunoTrabalho> trabalhos;
@@ -63,11 +63,11 @@ public class Aluno implements Serializable {
 		this.nomeAluno = nomeAluno;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

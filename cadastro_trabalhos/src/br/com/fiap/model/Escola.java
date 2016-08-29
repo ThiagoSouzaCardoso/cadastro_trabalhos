@@ -16,7 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Escola  implements Serializable{
+public class Escola  implements Serializable,BaseEntity{
 
 	private static final long serialVersionUID = -5786857402392306665L;
 	

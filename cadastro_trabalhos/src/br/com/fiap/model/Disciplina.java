@@ -1,9 +1,14 @@
 
 package br.com.fiap.model;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,8 +35,8 @@ public class Disciplina implements Serializable {
 	@OneToMany(mappedBy="aluno",fetch = FetchType.EAGER)
 	private Set<AlunoDisciplina> alunos;
 	
-	@ManyToMany(mappedBy="disciplinas",fetch = FetchType.EAGER)
-	private Set<Curso> cursos;
+	@ManyToMany(mappedBy="disciplinas",fetch = FetchType.EAGER,cascade={MERGE})
+	private Set<Curso> cursos = new HashSet<Curso>();
 
 	public Disciplina() {
 		
@@ -87,6 +92,14 @@ public class Disciplina implements Serializable {
 		} else if (!nomeDisciplina.equals(other.nomeDisciplina))
 			return false;
 		return true;
+	}
+
+	public Set<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(Set<Curso> cursos) {
+		this.cursos = cursos;
 	}
 
 }
