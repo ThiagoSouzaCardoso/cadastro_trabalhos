@@ -42,6 +42,7 @@ public class DisciplinaMB {
 		curso.getDisciplinas().add(disciplina);
 		disciplina.getCursos().add(curso);
 		dao.atualizar(disciplina);
+		disciplina = new Disciplina();
 	}
 
 	public void limpar() {

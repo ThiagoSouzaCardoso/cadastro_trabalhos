@@ -27,7 +27,7 @@
 						<h:selectOneMenu id="escolas" converter="convert" value="#{alunoMB.aluno.escola}" required="true" immediate="true">
 							<f:selectItem itemLabel="Selecione uma Escola"/>
 							<f:selectItems value="#{alunoMB.selectEscola}" var="o" itemLabel="#{o.nomeEscola}" itemValue="#{o}"/>
-							<f:ajax execute="escolas" render="cursos" event="change" listener="#{alunoMB.selecionarEscola}"/>
+							<f:ajax execute="escolas" render="@form" event="change" listener="#{alunoMB.selecionarEscola}" />
 						</h:selectOneMenu>
 					</td>
 				</tr>

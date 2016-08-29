@@ -4,28 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.fiap.dao.AlunoDao;
+import br.com.fiap.dao.AlunoDisciplinaDao;
 import br.com.fiap.dao.DisciplinaDao;
 import br.com.fiap.model.Aluno;
 import br.com.fiap.model.AlunoDisciplina;
 import br.com.fiap.model.Disciplina;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class NotasMB {
 
 	private AlunoDisciplina alunoDisciplina;
-	private List<SelectItem> selectAluno = new ArrayList<SelectItem>();
-	private List<SelectItem> selectDisciplina = new ArrayList<SelectItem>();
+	private List<Disciplina> selectDisciplina = new ArrayList<>();
 	private boolean ativaBotao = true;
+	private Disciplina disciplina;
 	
 	private List<Aluno> alunos = new ArrayList<>();
 	private int alunoSelecionado;
 
 	AlunoDao alunoDao = new AlunoDao();
+	AlunoDisciplinaDao alunoDisciplinaDao = new AlunoDisciplinaDao();
 	DisciplinaDao disciplinaDao = new DisciplinaDao();
 	
 	public NotasMB() {
@@ -33,13 +35,7 @@ public class NotasMB {
 		alunoDisciplina = new AlunoDisciplina();
 		alunos.addAll(alunoDao.listar());
 		
-		for(Aluno aluno:alunoDao.listar()){
-			selectAluno.add(new SelectItem(aluno.getId(), aluno.getNomeAluno()));
-		}
-		
-		for(Disciplina disciplina:disciplinaDao.listar()){
-			selectAluno.add(new SelectItem(disciplina.getId(), disciplina.getNomeDisciplina()));
-		}
+		selectDisciplina = disciplinaDao.listar();
 				
 		if (alunoDao.exiteDados() && disciplinaDao.exiteDados()) {
 			ativaBotao = true;
@@ -48,26 +44,23 @@ public class NotasMB {
 		}
 	}
 	
+	public void selecionaAluno(){
+		System.out.println(alunoDisciplina.getAluno().getNomeAluno());
+	}
+	
 	public void gravar(){
-		
+		alunoDisciplina.setDisciplina(disciplina);
+		alunoDisciplinaDao.adicionar(alunoDisciplina);
 	}
 	
 	public void limpar(){
-	}
+	}	
 
-	public List<SelectItem> getSelectAluno() {
-		return selectAluno;
-	}
-
-	public void setSelectAluno(List<SelectItem> selectAluno) {
-		this.selectAluno = selectAluno;
-	}
-
-	public List<SelectItem> getSelectDisciplina() {
+	public List<Disciplina> getSelectDisciplina() {
 		return selectDisciplina;
 	}
 
-	public void setSelectDisciplina(List<SelectItem> selectDisciplina) {
+	public void setSelectDisciplina(List<Disciplina> selectDisciplina) {
 		this.selectDisciplina = selectDisciplina;
 	}
 
@@ -101,6 +94,14 @@ public class NotasMB {
 
 	public void setAlunoSelecionado(int alunoSelecionado) {
 		this.alunoSelecionado = alunoSelecionado;
+	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
 	}	
 	
 	

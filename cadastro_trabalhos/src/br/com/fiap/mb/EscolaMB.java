@@ -19,6 +19,7 @@ public class EscolaMB {
 
 	public void gravar() {
 		dao.adicionar(escola);
+		escola = new Escola();
 	}
 
 	public void limpar() {

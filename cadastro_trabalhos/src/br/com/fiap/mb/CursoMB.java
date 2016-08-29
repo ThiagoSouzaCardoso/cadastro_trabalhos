@@ -47,6 +47,7 @@ public class CursoMB {
 		curso.getEscolas().add(escola);
 		System.out.println(curso.getNomeCurso() + "na escola " + escola.getNomeEscola());
 		dao.adicionar(curso);
+		curso = new Curso();
 	}
 
 	public void limpar() {

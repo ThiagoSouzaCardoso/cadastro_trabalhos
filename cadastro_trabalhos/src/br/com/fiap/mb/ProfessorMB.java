@@ -41,6 +41,7 @@ public class ProfessorMB {
 	public void gravar(){
 		Escola escola = escolaDao.buscar(escolaSelecionada);
 		dao.adicionar(professor);
+		professor = new Professor();
 	}
 	
 	public void limpar(){

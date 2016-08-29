@@ -59,6 +59,10 @@ public class AlunoMB {
 	
 	public void gravar() {
 		dao.adicionar(aluno);
+		aluno = new Aluno();
+		selectCurso = new ArrayList<>();
+		selectEscola = new ArrayList<>();
+		selectDisciplina = new ArrayList<>();
 	}
 
 	public void limpar() {

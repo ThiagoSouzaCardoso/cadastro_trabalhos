@@ -13,70 +13,74 @@ import br.com.fiap.model.Usuario;
 @ManagedBean
 @SessionScoped
 public class LoginMB {
-	
-		private String login;
-		private String senha;
-		private Map<String, Object> sessionMap;
-		private Usuario usuarioLogado;
-		
-		public LoginMB() {
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-			sessionMap = externalContext.getSessionMap();
-		}
-		
-		public String autenticar(){
-			UsuarioDao dao = new UsuarioDao();
-			Usuario usr = dao.autenticacao(login, senha);
-			
-			if (usr != null) {
-				sessionMap.put("usuario_logado", usr);
-				usuarioLogado = usr;
-				return "pages/template.jsf?faces-redirect=true";
-			} else {
-				return "login.jsf?faces-redirect=true";
-			}
-		}
 
-		
-		public String getLogin() {
-			return login;
-		}
-		
-		public void setLogin(String login) {
-			this.login = login;
-		}
-		
-		public String getSenha() {
-			return senha;
-		}
-		
-		public void setSenha(String senha) {
-			this.senha = senha;
-		}
-		
-		public void logout() {
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		}
+	private String login;
+	private String senha;
+	private Map<String, Object> sessionMap;
+	private Usuario usuarioLogado;
 
-		public Usuario getUsuarioLogado() {
-			return usuarioLogado;
-		}
+	public LoginMB() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		sessionMap = externalContext.getSessionMap();
+	}
 
-		public void setUsuarioLogado(Usuario usuarioLogado) {
-			this.usuarioLogado = usuarioLogado;
-		}
-		
-		public boolean isAluno() {
-			return usuarioLogado.isAluno();
-		}
+	public String autenticar() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		sessionMap = externalContext.getSessionMap();
+		UsuarioDao dao = new UsuarioDao();
+		Usuario usr = dao.autenticacao(login, senha);
 
-		public boolean isProfessor() {
-			return usuarioLogado.isProfessor();
+		if (usr != null) {
+			sessionMap.put("usuario_logado", usr);
+			usuarioLogado = usr;
+			return "pages/template.jsf?faces-redirect=true";
+		} else {
+			return "login.jsf?faces-redirect=true";
 		}
+	}
 
-		public boolean isAdmin() {
-			return usuarioLogado.isAdmin();
-		}
+	public String cadastrar() {
+		return "cadastroUsuario.jsf?faces-redirect=true";
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public void logout() {
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
+
+	public boolean isAluno() {
+		return usuarioLogado.isAluno();
+	}
+
+	public boolean isProfessor() {
+		return usuarioLogado.isProfessor();
+	}
+
+	public boolean isAdmin() {
+		return usuarioLogado.isAdmin();
+	}
 
 }

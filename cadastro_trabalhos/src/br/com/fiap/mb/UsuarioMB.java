@@ -16,9 +16,10 @@ public class UsuarioMB {
 		usuario = new Usuario();
 	}
 	
-	public void gravar() {		
+	public String gravar() {		
 		new UsuarioDao().adicionar(this.usuario);
 		this.usuario = new Usuario();
+		return "login.jsf";
 	}
 	
 	

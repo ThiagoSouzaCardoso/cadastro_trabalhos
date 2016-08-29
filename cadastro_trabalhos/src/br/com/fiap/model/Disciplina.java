@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 
 
 @Entity
-public class Disciplina implements Serializable {
+public class Disciplina implements Serializable,BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -51,12 +51,12 @@ public class Disciplina implements Serializable {
 	}
 
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
